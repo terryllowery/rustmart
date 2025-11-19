@@ -58,6 +58,27 @@ This document tracks the lessons and concepts covered while building RustMart.
 
 ---
 
+### ✅ Lesson 3: Cargo - The Rust Build Tool (2025-11-19)
+**File:** [03-cargo-guide.md](./03-cargo-guide.md)
+
+**Concepts covered:**
+- Cargo as build system, package manager, and toolchain
+- Project structure and Cargo.toml manifest
+- Dependency management and features
+- Build profiles and optimization
+- Cross-compilation to multiple platforms
+- Testing, documentation, and publishing
+- Configuration and best practices
+
+**Key takeaways:**
+- Cargo automates building, testing, and dependency management
+- Use workspaces for multi-package projects
+- Cross-compile with rustup targets or `cross` tool
+- Commit Cargo.lock for binaries, not libraries
+- Use profiles to optimize for different scenarios
+
+---
+
 ## 🔜 Next Topics to Cover
 
 - [ ] Common types and error handling patterns
