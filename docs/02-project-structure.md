@@ -17,6 +17,102 @@ When building Rust applications, should you put code in:
 
 **Answer:** For any non-trivial application, **use both**. This is the idiomatic Rust pattern.
 
+## What Does "Non-Trivial" Mean?
+
+**Non-trivial** = **Not simple** or **More than basic/minimal**
+
+### Trivial Applications (Just use main.rs)
+
+These are simple enough to live in a single `main.rs` file:
+
+**Example 1: Simple CLI tool**
+```rust
+// A trivial "hello world" CLI - just main.rs is fine
+fn main() {
+    let name = std::env::args().nth(1).unwrap_or("World".to_string());
+    println!("Hello, {}!", name);
+}
+```
+
+**Example 2: Basic file converter**
+```rust
+// A trivial file converter - just main.rs is fine
+fn main() {
+    let input = std::fs::read_to_string("input.txt").unwrap();
+    let output = input.to_uppercase();
+    std::fs::write("output.txt", output).unwrap();
+}
+```
+
+**Characteristics of trivial applications:**
+- ✅ 10-50 lines total
+- ✅ Single file is sufficient
+- ✅ No need to test individual functions
+- ✅ Won't be reused by other code
+- ✅ No complex business logic
+- ✅ Single, simple purpose
+
+### Non-Trivial Applications (Use lib.rs + main.rs)
+
+These need proper structure and organization:
+
+**Example 1: Web service** (like our microservices)
+- Has HTTP handlers, database connections, config, error handling, middleware
+- Multiple concerns that need organization
+
+**Example 2: Game engine**
+- Has rendering, physics, input, audio, scripting systems
+- Many subsystems that need to be testable separately
+
+**Example 3: CLI tool with business logic** (e.g., `cargo`, `git`)
+- Complex command handling, config management, plugin systems
+
+**Characteristics of non-trivial applications:**
+- ✅ 100+ lines of code
+- ✅ Multiple responsibilities/concerns
+- ✅ Need to test logic independently
+- ✅ Might be used by other crates
+- ✅ Has business logic worth documenting
+- ✅ Will grow and evolve over time
+- ✅ Benefits from modular organization
+
+### Rule of Thumb
+
+**Use just main.rs if:**
+- Single-purpose script/tool
+- < 50 lines of code
+- No tests needed
+- Won't be reused by other code
+- Simple, straightforward logic
+
+**Use lib.rs + main.rs if:**
+- **Web service/HTTP server** ← Our case!
+- Has business logic to test
+- Multiple modules/concerns
+- Will grow to 100+ lines
+- Part of a larger system
+- **Any microservice architecture** ← Definitely our case!
+
+### Why All Our RustMart Services Are Non-Trivial
+
+All our services (api-gateway, product-service, order-service, etc.) are **definitely non-trivial** because they:
+
+1. **Handle HTTP requests** - Need route handlers, middleware, error responses
+2. **Connect to databases** - Require connection pools, queries, transactions
+3. **Have business logic** - Product catalog, order processing, payment flows
+4. **Need error handling** - Database errors, validation, HTTP status codes
+5. **Require testing** - Unit tests for logic, integration tests for APIs
+6. **Will grow significantly** - Start at hundreds of lines, grow to thousands
+7. **Part of distributed system** - Interact with other services, message queues
+8. **Need observability** - Logging, tracing, metrics
+
+Therefore, we'll use the **lib.rs + main.rs** pattern for all of them.
+
+**Reference**: The Rust community widely adopts this pattern for any production service. See examples in:
+- [Tokio's mini-redis example](https://github.com/tokio-rs/mini-redis)
+- [Actix-web examples](https://github.com/actix/examples)
+- [Real-world Rust web services](https://github.com/gothinkster/realworld)
+
 ## Understanding Crates and Targets
 
 **From the [Rust Book](https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html):**

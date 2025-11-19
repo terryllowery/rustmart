@@ -1,5 +1,12 @@
 # Lesson 1: Cargo Workspaces
 
+## Official Documentation References
+
+- **Cargo Book - Workspaces**: https://doc.rust-lang.org/cargo/reference/workspaces.html
+- **Cargo Book - Workspace Configuration**: https://doc.rust-lang.org/cargo/reference/workspaces.html#the-workspace-section
+- **Cargo Reference - Dependency Resolution**: https://doc.rust-lang.org/cargo/reference/resolver.html
+- **Cargo Book - Package Layout**: https://doc.rust-lang.org/cargo/guide/project-layout.html
+
 ## The Problem Workspaces Solve
 
 Imagine you have 6 different Rust projects (5 microservices + 1 shared library). Without workspaces:
