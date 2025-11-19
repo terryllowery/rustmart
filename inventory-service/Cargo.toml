@@ -1,0 +1,7 @@
+[package]
+name = "inventory-service"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
