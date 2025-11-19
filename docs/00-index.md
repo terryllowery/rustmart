@@ -2,6 +2,17 @@
 
 This document tracks the lessons and concepts covered while building RustMart.
 
+## 📍 Current Status
+
+**Last Updated:** 2025-11-19
+**Current Phase:** Learning fundamentals
+**Next Step:** Choose between:
+1. Start implementing shared library (error types, common models)
+2. Build first microservice (product-service)
+3. Learn more Rust concepts
+
+**Note:** When reopening Warp, say "Continue from docs/00-index.md" to resume.
+
 ## 🎯 Learning Goals
 - Build a production-ready microservices application in Rust
 - Learn async/await patterns with Tokio
