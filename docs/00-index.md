@@ -90,6 +90,28 @@ This document tracks the lessons and concepts covered while building RustMart.
 
 ---
 
+### ✅ Lesson 4: Error Handling in Rust (2025-11-19)
+**File:** [04-error-handling.md](./04-error-handling.md)
+
+**Concepts covered:**
+- Option<T> for values that might not exist
+- Result<T, E> for operations that can fail
+- The ? operator for error propagation
+- Custom error types with enums
+- thiserror for library errors
+- anyhow for application errors
+- panic! for unrecoverable errors
+- Best practices and patterns
+
+**Key takeaways:**
+- Rust has no exceptions - errors are values
+- Use Result for recoverable errors, panic! for bugs
+- ? operator is idiomatic for propagating errors
+- thiserror makes custom errors easy
+- anyhow simplifies error handling in applications
+
+---
+
 ## 🔜 Next Topics to Cover
 
 - [ ] Common types and error handling patterns
