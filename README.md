@@ -113,4 +113,4 @@ This project demonstrates:
 
 ## Author
 
-Terry
+Terry Lowery
