@@ -5,11 +5,8 @@ This document tracks the lessons and concepts covered while building RustMart.
 ## 📍 Current Status
 
 **Last Updated:** 2025-11-19
-**Current Phase:** Learning fundamentals
-**Next Step:** Choose between:
-1. Start implementing shared library (error types, common models)
-2. Build first microservice (product-service)
-3. Learn more Rust concepts
+**Current Phase:** Building microservices
+**Next Step:** Build first microservice (product-service) with Axum, then add OpenTelemetry
 
 **Note:** When reopening Warp, say "Continue from docs/00-index.md" to resume.
 
@@ -109,6 +106,36 @@ This document tracks the lessons and concepts covered while building RustMart.
 - ? operator is idiomatic for propagating errors
 - thiserror makes custom errors easy
 - anyhow simplifies error handling in applications
+
+---
+
+### ✅ Lesson 5: Building the Shared Library (2025-11-19)
+**File:** [05-shared-library.md](./05-shared-library.md)
+
+**Concepts covered:**
+- Module organization and structure
+- Creating library crates
+- Custom error types with thiserror
+- Domain model design (Product, User, Order)
+- Serde for JSON serialization
+- Public vs private visibility
+- Re-exports for ergonomic APIs
+- Writing and running tests
+
+**What we built:**
+- shared library with error types, models, and config
+- ApiError enum with thiserror
+- Product, User, Order, OrderItem structs
+- DatabaseConfig and ServerConfig
+- Tests for models and JSON serialization
+
+**Key takeaways:**
+- Shared libraries enable code reuse across microservices
+- Use pub mod to make modules public
+- Re-export types at crate root for easier imports
+- Everything is private by default in Rust
+- use super::* imports from parent module (common in tests)
+- Serde makes JSON serialization straightforward
 
 ---
 
