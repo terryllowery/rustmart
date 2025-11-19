@@ -39,9 +39,27 @@ This document tracks the lessons and concepts covered while building RustMart.
 
 ---
 
+### ✅ Lesson 2: Project Structure - lib.rs vs main.rs (2025-11-19)
+**File:** [02-project-structure.md](./02-project-structure.md)
+
+**Concepts covered:**
+- Binary vs library crates
+- "Thin binary, fat library" pattern
+- Project layout and module organization
+- `pub`, `pub(crate)`, and visibility modifiers
+- Testing patterns (unit vs integration)
+- Official Cargo project layout guidelines
+
+**Key takeaways:**
+- main.rs should be 5-20 lines - just setup and calling lib.rs
+- All business logic goes in lib.rs and modules
+- This pattern enables testing, reusability, and documentation
+- Cargo auto-detects both lib.rs and main.rs
+
+---
+
 ## 🔜 Next Topics to Cover
 
-- [ ] Rust module system and code organization
 - [ ] Common types and error handling patterns
 - [ ] Async/await and Tokio runtime basics
 - [ ] Building HTTP APIs with Axum
