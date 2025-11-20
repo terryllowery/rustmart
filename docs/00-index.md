@@ -4,9 +4,9 @@ This document tracks the lessons and concepts covered while building RustMart.
 
 ## 📍 Current Status
 
-**Last Updated:** 2025-11-19
+**Last Updated:** 2025-11-20
 **Current Phase:** Building microservices
-**Next Step:** Build first microservice (product-service) with Axum, then add OpenTelemetry
+**Next Step:** Add OpenTelemetry instrumentation for IBM demo
 
 **Note:** When reopening Warp, say "Continue from docs/00-index.md" to resume.
 
@@ -136,6 +136,35 @@ This document tracks the lessons and concepts covered while building RustMart.
 - Everything is private by default in Rust
 - use super::* imports from parent module (common in tests)
 - Serde makes JSON serialization straightforward
+
+---
+
+### ✅ Lesson 6: Building Product Service with Axum (2025-11-20)
+**File:** [06-product-service.md](./06-product-service.md)
+
+**Concepts covered:**
+- Async programming with Tokio
+- Building HTTP APIs with Axum
+- Router and request handlers
+- Path parameter extraction
+- JSON serialization with Axum
+- Error handling in web services
+- IntoResponse trait implementation
+- Tracing and logging
+
+**What we built:**
+- First working microservice (product-service)
+- Health check endpoint
+- REST API endpoints (GET /products, GET /products/:id)
+- Error responses with proper HTTP status codes
+- Integration with shared library
+
+**Key takeaways:**
+- async/await enables non-blocking I/O
+- Axum uses extractors (Path, Json, etc.) to parse requests
+- IntoResponse trait converts types to HTTP responses
+- Shared error types work across all services
+- Tokio runtime manages async execution
 
 ---
 
