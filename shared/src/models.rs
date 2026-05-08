@@ -1,12 +1,24 @@
-use serde::{Deserialize, Serialize };
+use chrono::{DateTime, Utc};
+use rust_decimal;
+use serde::{Deserialize, Serialize};
+use sqlx;
+use uuid;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, sqlx::FromRow)]
 pub struct Product {
-    pub id: String,
+    pub id: uuid::Uuid,
     pub name: String,
-    pub description: String,
+    pub price: rust_decimal::Decimal,
+    pub inventory_count: i32,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CreateProductRequest {
+    pub name: String,
     pub price: f64,
-    pub stock: i32,
+    pub inventory_count: i32,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -35,34 +47,34 @@ pub struct Order {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use uuid::Uuid;
 
     #[test]
     fn test_product_creation() {
         let product = Product {
-            id: "1".to_string(),
+            id: Uuid::new_v4(),
             name: "Test Product".to_string(),
-            description: "A Test Product".to_string(),
-            price: 99.99,
-            stock: 10,
+            price: rust_decimal::Decimal::new(9999, 2), // 99.99
+            inventory_count: 10,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
         };
 
-        assert_eq!(product.id, "1".to_string());
-        assert_eq!(product.name, "Test Product".to_string());
-        assert_eq!(product.description, "A Test Product".to_string());
-        assert_eq!(product.price, 99.99);
-        assert_eq!(product.stock, 10);
+        assert_eq!(product.name, "Test Product");
+        assert_eq!(product.price, rust_decimal::Decimal::new(9999, 2));
+        assert_eq!(product.inventory_count, 10);
     }
 
     #[test]
     fn test_product_json_serialization() {
         let product = Product {
-            id: "1".to_string(),
+            id: Uuid::new_v4(),
             name: "Test Product".to_string(),
-            description: "A Test Product".to_string(),
-            price: 99.99,
-            stock: 10,
+            price: rust_decimal::Decimal::new(9999, 2), // 99.99
+            inventory_count: 10,
+            created_at: Utc::now(),
+            updated_at: Utc::now(),
         };
-
         // Serialize to JSON
         let json = serde_json::to_string(&product).unwrap();
         assert!(json.contains("Test Product"));
@@ -70,6 +82,5 @@ mod tests {
         // Deserialize from JSON
         let deserialized: Product = serde_json::from_str(&json).unwrap();
         assert_eq!(deserialized.id, product.id);
-
     }
 }

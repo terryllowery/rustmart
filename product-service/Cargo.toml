@@ -7,9 +7,25 @@ authors.workspace = true
 [dependencies]
 shared = { path = "../shared"}
 axum.workspace = true
-tokio = {workspace = true}
+tokio = {workspace = true, features = ["full"]}
 serde = {workspace = true}
 serde_json.workspace = true
 anyhow.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
+rust_decimal.workspace = true
+
+# OpenTelmetry
+opentelemetry.workspace = true
+opentelemetry_sdk.workspace = true
+opentelemetry-otlp.workspace = true
+opentelemetry-stdout.workspace = true
+opentelemetry-jaeger.workspace = true
+tracing-opentelemetry.workspace = true
+tower-http.workspace = true
+
+# SQLx dependencies
+sqlx = { workspace = true, features = ["runtime-tokio-rustls", "postgres", "uuid", "chrono", "migrate", "runtime-tokio"] }
+uuid = { version = "1.6", features = ["v4", "serde"]}
+chrono = { version = "0.4", features = ["serde"]}
+

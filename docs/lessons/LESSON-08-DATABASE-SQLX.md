@@ -1,5 +1,6 @@
 # Lesson 8: Database Integration with SQLx
 
+
 ## Overview
 Real microservices need persistent storage. In this lesson, you'll integrate **PostgreSQL** into product-service using **SQLx**, a compile-time checked SQL library for Rust.
 
@@ -267,7 +268,7 @@ impl ProductRepository {
 
     #[tracing::instrument(skip(self))]
     pub async fn get_all(&self) -> Result<Vec<Product>, ApiError> {
-        let products = sqlx::query_as::<_, Product>("SELECT * FROM products ORDER BY name")
+        let products = sqlx::query_as::<_, Product>("SELECT * FROM products")
             .fetch_all(&self.pool)
             .await
             .map_err(|e| ApiError::InternalError(e.to_string()))?;

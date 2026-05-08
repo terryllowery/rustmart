@@ -8,6 +8,14 @@ authors.workspace = true
 thiserror.workspace = true
 serde = { workspace = true}
 axum.workspace = true
+chrono = { workspace = true}
+uuid = { workspace = true, features = ["v4", "serde"] }
+sqlx = { workspace = true, features = ["runtime-tokio"] }
+
+# utilities
+rust_decimal = { workspace = true, features = ["serde"] }
 
 [dev-dependencies]
 serde_json = "1.0"
+
+

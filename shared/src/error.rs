@@ -1,8 +1,8 @@
-use thiserror::Error;
 use axum::{
-    response::{IntoResponse, Response},
     http::StatusCode,
+    response::{IntoResponse, Response},
 };
+use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum ApiError {
@@ -20,7 +20,6 @@ pub enum ApiError {
 
     #[error("database error: {0}")]
     Database(String),
-
 }
 
 impl IntoResponse for ApiError {
